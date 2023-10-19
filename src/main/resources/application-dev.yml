@@ -1,0 +1,51 @@
+server:
+  port: 80
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/test1?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
+  #  resources:
+#    static-locations: classpath:/templates/,classpath:/static/
+
+#Redis集群
+#  redis:
+#    lettuce:
+#      pool:
+#        min-idle: 0
+#        max-active: 8
+#        max-wait: -1
+#        max-idle: 8
+#    cluster:
+#      max-redirects: 5
+#      nodes: 127.0.0.1:6379,127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383,127.0.0.1:6384
+#    database: 0
+#    timeout: 10000
+
+
+
+
+mybatis-plus:
+  #      实体类扫描
+  type-aliases-package: com.example.springboot02.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #      关闭下划线便转换小驼峰命名法
+    map-underscore-to-camel-case: false
+    #      mapper文件扫描
+  mapper-locations: classpath:mappers/*.xml
+  global-config:
+    db-config:
+#      逻辑删除配置
+      logic-delete-field: isDel
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+logging:
+  config: classpath:logback-spring.xml
